@@ -485,7 +485,7 @@ app.delete('/api/posts', async (req, res) => {
 app.get('/api', (req, res) => {
   res.json({ 
     status: 'OK', 
-    message: 'Feather Press API is running',
+    message: 'Chryp Lite API is running',
     endpoints: {
       posts: '/api/posts',
       galleries: '/api/galleries',
@@ -801,6 +801,56 @@ app.post('/api/galleries/:id/unlike', async (req, res) => {
   }
 });
 
+// Photos API
+app.get('/api/photos', async (req, res) => {
+  try {
+    const { pool } = await import('./src/lib/mysqlClient.js');
+    const { created_by } = req.query;
+    const [rows] = created_by
+      ? await pool.execute('SELECT * FROM photos WHERE created_by = ? ORDER BY created_at DESC', [created_by])
+      : await pool.execute('SELECT * FROM photos ORDER BY created_at DESC');
+    res.json(rows);
+  } catch (error) {
+    console.error('Error fetching photos:', error);
+    res.status(500).json({ error: 'Failed to fetch photos' });
+  }
+});
+
+app.post('/api/photos/upload', async (req, res) => {
+  try {
+    const { pool } = await import('./src/lib/mysqlClient.js');
+    const { title, dataUrl, description, category, tags, created_by, photographer } = req.body;
+    
+    if (!title || !dataUrl) {
+      return res.status(400).json({ error: 'Title and dataUrl are required' });
+    }
+    
+    // Convert dataUrl to a file and upload it
+    const base64Data = dataUrl.replace(/^data:image\/[a-z]+;base64,/, '');
+    const buffer = Buffer.from(base64Data, 'base64');
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+    const ext = dataUrl.includes('image/png') ? '.png' : '.jpg';
+    const filename = `${uniqueSuffix}${ext}`;
+    
+    // Save file to uploads directory
+    const filePath = path.join(uploadsDir, filename);
+    await fs.promises.writeFile(filePath, buffer);
+    
+    const url = `/uploads/${filename}`;
+    
+    const [result] = await pool.execute(
+      'INSERT INTO photos (title, url, description, category, tags, created_by, photographer) VALUES (?, ?, ?, ?, ?, ?, ?)',
+      [title, url, description || null, category || null, tags || null, created_by || null, photographer || null]
+    );
+    
+    const [rows] = await pool.execute('SELECT * FROM photos WHERE id = ?', [result.insertId]);
+    res.status(201).json(rows[0]);
+  } catch (error) {
+    console.error('Error creating photo:', error);
+    res.status(500).json({ error: 'Failed to create photo' });
+  }
+});
+
 // Root route - welcome page
 // Serve frontend build (Vite) from dist/
 const distPath = path.resolve('dist');
@@ -817,7 +867,7 @@ if (fs.existsSync(distPath)) {
   // Fallback JSON if frontend hasn't been built yet
   app.get('/', (req, res) => {
     res.json({
-      message: 'Welcome to Feather Press API',
+      message: 'Welcome to Chryp Lite API',
       status: 'Server is running',
       note: 'Build the frontend with `npm run build` to serve the UI.',
       endpoints: {

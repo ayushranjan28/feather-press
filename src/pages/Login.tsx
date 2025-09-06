@@ -136,7 +136,7 @@ const Login = () => {
               <PenTool className="w-10 h-10 text-black" />
             </div>
             <h1 className="text-4xl font-bold bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 bg-clip-text text-transparent mb-2">
-              Feather Press
+              Chryp Lite
             </h1>
             <p className="text-gray-400 text-sm">Your Creative Writing Platform</p>
           </div>
@@ -149,8 +149,8 @@ const Login = () => {
                </CardTitle>
               <CardDescription className="text-gray-400">
                 {isLogin 
-                  ? 'Sign in to your Feather Press account' 
-                  : 'Join Feather Press and start blogging'
+                  ? 'Sign in to your Chryp Lite account' 
+                  : 'Join Chryp Lite and start blogging'
                 }
               </CardDescription>
             </CardHeader>
@@ -268,7 +268,7 @@ const Login = () => {
                   <Sparkles className="w-3 h-3 mr-1" />
                   Test Credentials:
                 </p>
-                <p className="text-xs text-gray-400">Username: admin | Password: admin123</p>
+                <p className="text-xs text-gray-400">Username: CloneFest2025 | Password: CloneFest2025</p>
                 <p className="text-xs text-gray-400">Username: user | Password: password123</p>
               </div>
             </CardContent>

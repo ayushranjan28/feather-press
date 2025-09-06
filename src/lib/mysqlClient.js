@@ -22,7 +22,7 @@ const dbConfig = {
   port: parseInt(process.env.MYSQL_PORT || '3306'),
   user: process.env.MYSQL_USER || 'root',
   password: process.env.MYSQL_PASSWORD || '',
-  database: process.env.MYSQL_DATABASE || 'feather_press',
+  database: process.env.MYSQL_DATABASE || 'chryp_lite',
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
@@ -50,6 +50,21 @@ export async function initializeDatabase() {
   try {
     const connection = await pool.getConnection();
     
+    // Create users table
+    await connection.execute(`
+      CREATE TABLE IF NOT EXISTS users (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        username VARCHAR(255) UNIQUE NOT NULL,
+        password VARCHAR(255) NOT NULL,
+        email VARCHAR(255) UNIQUE,
+        role VARCHAR(50) DEFAULT 'user',
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        INDEX idx_username (username),
+        INDEX idx_email (email)
+      )
+    `);
+
     // Create posts table
     await connection.execute(`
       CREATE TABLE IF NOT EXISTS posts (
@@ -228,6 +243,17 @@ export async function initializeDatabase() {
       }
     } catch (e) {
       // ignore if migration fails
+    }
+    
+    // Create default admin user if it doesn't exist
+    try {
+      await connection.execute(`
+        INSERT IGNORE INTO users (username, password, email, role) VALUES 
+        ('CloneFest2025', 'CloneFest2025', 'admin@chryplite.com', 'admin'),
+        ('demo', 'demo123', 'demo@chryplite.com', 'user')
+      `);
+    } catch (e) {
+      console.log('Default users may already exist');
     }
     
     console.log('Database tables initialized successfully');

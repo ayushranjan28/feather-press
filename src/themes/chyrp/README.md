@@ -1,4 +1,4 @@
-# Chyrp Theme for Feather Press
+# Chyrp Theme for Chryp Lite
 
 A modern, accessible, and responsive blog theme inspired by the original Chyrp Lite platform, built with React, TypeScript, and Tailwind CSS.
 

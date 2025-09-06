@@ -21,7 +21,8 @@ import {
   Camera,
   Image as ImageIcon,
   Heart,
-  MessageCircle
+  MessageCircle,
+  Trash2
 } from 'lucide-react';
 import { Navigation } from '@/components/Navigation';
 import { apiClient, API_ORIGIN, PhotoItem } from '@/lib/apiClient';
@@ -53,8 +54,19 @@ const PhotoGallery = () => {
   const [comments, setComments] = useState<Record<number, any[]>>({});
   const [showComments, setShowComments] = useState<Record<number, boolean>>({});
   const [newComment, setNewComment] = useState<Record<number, string>>({});
+  const [isCreateOpen, setIsCreateOpen] = useState(false);
+  const [newPhoto, setNewPhoto] = useState<{
+    title: string;
+    description?: string;
+    category?: string;
+    tags?: string;
+    url?: string;
+    dataUrl?: string;
+  }>({ title: '' });
+  const [photos, setPhotos] = useState<PhotoItem[]>([]);
   const { elementRef, isVisible } = useScrollAnimation(0.1);
   const currentUser = JSON.parse(localStorage.getItem('user') || 'null');
+  const isAdmin = currentUser?.role === 'admin' || currentUser?.username === 'admin';
 
   const normalizeUrl = (raw: string): string => {
     if (!raw) return '/placeholder.svg';
@@ -539,11 +551,11 @@ const PhotoGallery = () => {
                       >
                         <Share2 className="w-4 h-4" />
                       </Button>
-                      {(isAdmin || (currentUser && currentUser.username === photo.created_by)) && (
+                      {isAdmin && (
                         <Button
                           variant="destructive"
                           size="sm"
-                          onClick={(e) => { e.stopPropagation(); handleDelete(photo); }}
+                          onClick={(e) => { e.stopPropagation(); handleDelete(photo as any); }}
                           className="h-8 w-8 p-0"
                           title="Delete photo"
                         >

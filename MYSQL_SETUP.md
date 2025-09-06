@@ -1,6 +1,6 @@
 # MySQL Database Setup Guide
 
-This guide will help you set up MySQL database for the Feather Press application.
+This guide will help you set up MySQL database for the Chryp Lite application.
 
 ## Prerequisites
 
@@ -38,8 +38,8 @@ mysql -u root -p
 
 2. Create the database:
 ```sql
-CREATE DATABASE feather_press;
-USE feather_press;
+CREATE DATABASE chryp_lite;
+USE chryp_lite;
 ```
 
 3. Exit MySQL:
@@ -51,7 +51,7 @@ EXIT;
 
 Run the database setup script:
 ```bash
-mysql -u root -p feather_press < database-setup.sql
+mysql -u root -p chryp_lite < database-setup.sql
 ```
 
 This will create the `posts` table and insert some sample data.
@@ -70,7 +70,7 @@ MYSQL_HOST=localhost
 MYSQL_PORT=3306
 MYSQL_USER=root
 MYSQL_PASSWORD=your_mysql_password_here
-MYSQL_DATABASE=feather_press
+MYSQL_DATABASE=chryp_lite
 
 # Server Configuration
 PORT=3001
@@ -141,7 +141,7 @@ CREATE TABLE posts (
 ### Connection Issues
 - Make sure MySQL is running: `sudo systemctl status mysql` (Linux) or check MySQL Workbench
 - Verify your credentials in the `.env` file
-- Check if the database `feather_press` exists
+- Check if the database `chryp_lite` exists
 - Ensure the port 3001 is not being used by another application
 
 ### Common Errors
@@ -152,8 +152,8 @@ CREATE TABLE posts (
 ### Reset Database
 If you need to reset the database:
 ```bash
-mysql -u root -p -e "DROP DATABASE IF EXISTS feather_press; CREATE DATABASE feather_press;"
-mysql -u root -p feather_press < database-setup.sql
+mysql -u root -p -e "DROP DATABASE IF EXISTS chryp_lite; CREATE DATABASE chryp_lite;"
+mysql -u root -p chryp_lite < database-setup.sql
 ```
 
 ## 11. Production Considerations

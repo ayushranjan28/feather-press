@@ -9,7 +9,7 @@ async function testConnection() {
     port: parseInt(process.env.MYSQL_PORT || '3307'),
     user: process.env.MYSQL_USER || 'root',
     password: process.env.MYSQL_PASSWORD || 'Ganesha123*',
-    database: process.env.MYSQL_DATABASE || 'feather_press'
+    database: process.env.MYSQL_DATABASE || 'chryp_lite'
   };
 
   console.log('Attempting to connect with config:', {

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * MySQL Setup Script for Feather Press
+ * MySQL Setup Script for Chryp Lite
  * This script helps you set up the MySQL database and environment
  */
 
@@ -20,7 +20,7 @@ function question(query) {
 }
 
 async function setupMySQL() {
-  console.log('🚀 Feather Press MySQL Setup');
+  console.log('🚀 Chryp Lite MySQL Setup');
   console.log('============================\n');
 
   try {
@@ -39,7 +39,7 @@ async function setupMySQL() {
     const port = await question('MySQL Port (default: 3306): ') || '3306';
     const user = await question('MySQL Username (default: root): ') || 'root';
     const password = await question('MySQL Password: ');
-    const database = await question('Database Name (default: feather_press): ') || 'feather_press';
+    const database = await question('Database Name (default: chryp_lite): ') || 'chryp_lite';
 
     // Update .env file
     console.log('\n📝 Updating .env file with your credentials...');
@@ -91,8 +91,8 @@ VITE_API_BASE_URL=http://localhost:3001/api
       if (rows[0].count === 0) {
         await connection.execute(`
           INSERT INTO posts (title, content) VALUES 
-          ('Welcome to Feather Press', 'This is your first post! You can edit or delete it from the admin panel.'),
-          ('Getting Started', 'Feather Press is now connected to MySQL database. You can create, read, update, and delete posts through the API.')
+          ('Welcome to Chryp Lite', 'This is your first post! You can edit or delete it from the admin panel.'),
+          ('Getting Started', 'Chryp Lite is now connected to MySQL database. You can create, read, update, and delete posts through the API.')
         `);
         console.log('✅ Sample data inserted!');
       }

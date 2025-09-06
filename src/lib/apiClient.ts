@@ -238,6 +238,33 @@ class ApiClient {
     return this.request<{ likes: number }>(`/videos/${id}/unlike`, { method: 'POST' });
   }
 
+  // Photos API
+  async getPhotos(createdBy?: string): Promise<PhotoItem[]> {
+    const query = createdBy ? `?created_by=${encodeURIComponent(createdBy)}` : '';
+    return this.request<PhotoItem[]>(`/photos${query}`);
+  }
+
+  async createPhoto(params: { title: string; url: string; description?: string; category?: string; tags?: string; created_by?: string; photographer?: string }): Promise<PhotoItem> {
+    return this.request<PhotoItem>('/photos', {
+      method: 'POST',
+      body: JSON.stringify(params),
+    });
+  }
+
+  async uploadPhotoLocal(params: { title: string; dataUrl: string; description?: string; category?: string; tags?: string; created_by?: string; photographer?: string }): Promise<PhotoItem> {
+    return this.request<PhotoItem>('/photos/upload', {
+      method: 'POST',
+      body: JSON.stringify(params),
+    });
+  }
+
+  async deletePhoto(id: number, userInfo?: { userId: number; username: string; isAdmin: boolean }): Promise<{ message: string }> {
+    return this.request<{ message: string }>(`/photos/${id}`, {
+      method: 'DELETE',
+      body: JSON.stringify(userInfo),
+    });
+  }
+
   // Audios API removed
   // Audios API
   async getAudios(createdBy?: string): Promise<AudioItem[]> {

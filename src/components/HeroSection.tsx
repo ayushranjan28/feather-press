@@ -71,8 +71,8 @@ export const HeroSection = () => {
             {/* Enhanced Main Title */}
             <div className={`space-y-4 transition-all duration-1000 delay-200 ${isVisible ? 'animate-slide-in-left' : 'opacity-0 -translate-x-10'}`}>
               <h1 className="text-5xl md:text-7xl lg:text-8xl font-display font-bold text-white leading-tight">
-                <span className="text-reveal block">Feather</span>
-                <span className="text-reveal block" style={{animationDelay: '0.5s'}}>Press</span>
+                <span className="text-reveal block">Chryp</span>
+                <span className="text-reveal block" style={{animationDelay: '0.5s'}}>Lite</span>
               </h1>
               
               {/* Enhanced Subtitle */}

@@ -12,8 +12,6 @@ export type SiteSettings = {
   // Site Identity
   title: string;
   description: string;
-  logoDataUrl?: string;
-  faviconDataUrl?: string;
   
   // Appearance
   theme: ThemeType;
@@ -61,7 +59,7 @@ export type UserAccountSettings = {
 };
 
 export const DEFAULT_SETTINGS: SiteSettings = {
-  title: 'Feather Press',
+  title: 'Chryp Lite',
   description: 'Your Creative Writing Platform',
   theme: 'system',
   darkModeEnabled: false,

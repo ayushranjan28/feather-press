@@ -52,7 +52,7 @@ const PageNavigation = () => {
               <PenTool className="w-8 h-8 text-gray-800 group-hover:text-gray-600 transition-colors duration-300" />
             </div>
             <h1 className="text-2xl lg:text-3xl font-serif font-bold text-gray-800 group-hover:text-gray-600 transition-colors duration-300">
-              Feather Press
+              Chryp Lite
             </h1>
           </div>
 

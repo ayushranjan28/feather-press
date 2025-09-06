@@ -4,11 +4,17 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSepara
 import { PenTool, Menu, X, Settings, User, LogOut, ChevronDown } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSettings } from "@/components/SettingsContext";
+import { GlobalSearch } from "@/components/GlobalSearch";
+import { SettingsDrawer } from "@/components/SettingsDrawer";
 
 export const Navigation = () => {
   const navigate = useNavigate();
+  const { settings } = useSettings();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [user, setUser] = useState<any>(null);
 
   useEffect(() => {

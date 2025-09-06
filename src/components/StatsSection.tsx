@@ -113,7 +113,7 @@ export const StatsSection = () => {
             Trusted by Creators Worldwide
           </h2>
           <p className="text-xl text-white/80 max-w-4xl mx-auto leading-relaxed">
-            Join thousands of creators who trust Feather Press to power their content platforms.
+            Join thousands of creators who trust Chryp Lite to power their content platforms.
           </p>
         </div>
         

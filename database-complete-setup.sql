@@ -1,7 +1,7 @@
--- Complete MySQL Database Setup for Feather Press
+-- Complete MySQL Database Setup for Chryp Lite
 -- This script creates all necessary tables for the application
 
-USE feather_press;
+USE chryp_lite;
 
 -- Create users table
 CREATE TABLE IF NOT EXISTS users (
@@ -104,17 +104,17 @@ CREATE TABLE IF NOT EXISTS comments (
 
 -- Insert sample data
 INSERT IGNORE INTO posts (title, content, created_by) VALUES 
-('Welcome to Feather Press', 'This is your first post! You can edit or delete it from the admin panel.', 'admin'),
-('Getting Started', 'Feather Press is now connected to MySQL database. You can create, read, update, and delete posts through the API.', 'admin');
+('Welcome to Chryp Lite', 'This is your first post! You can edit or delete it from the admin panel.', 'CloneFest2025'),
+('Getting Started', 'Chryp Lite is now connected to MySQL database. You can create, read, update, and delete posts through the API.', 'CloneFest2025');
 
 INSERT IGNORE INTO quotes (text, author, created_by) VALUES 
-('The only way to do great work is to love what you do.', 'Steve Jobs', 'admin'),
-('Innovation distinguishes between a leader and a follower.', 'Steve Jobs', 'admin');
+('The only way to do great work is to love what you do.', 'Steve Jobs', 'CloneFest2025'),
+('Innovation distinguishes between a leader and a follower.', 'Steve Jobs', 'CloneFest2025');
 
--- Create a default admin user (password: admin123)
+-- Create a default admin user (password: CloneFest2025)
 INSERT IGNORE INTO users (username, password, email, role) VALUES 
-('admin', 'admin123', 'admin@featherpress.com', 'admin'),
-('demo', 'demo123', 'demo@featherpress.com', 'user');
+('CloneFest2025', 'CloneFest2025', 'admin@chryplite.com', 'admin'),
+('demo', 'demo123', 'demo@chryplite.com', 'user');
 
 -- Show created tables
 SHOW TABLES;

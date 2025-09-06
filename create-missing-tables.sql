@@ -1,5 +1,5 @@
--- Create missing tables for Feather Press
-USE feather_press;
+-- Create missing tables for Chryp Lite
+USE chryp_lite;
 
 -- Create users table
 CREATE TABLE IF NOT EXISTS users (
@@ -89,15 +89,15 @@ CREATE TABLE IF NOT EXISTS comments (
 ALTER TABLE posts ADD COLUMN IF NOT EXISTS created_by VARCHAR(255);
 ALTER TABLE posts ADD INDEX IF NOT EXISTS idx_created_by (created_by);
 
--- Create a default admin user (password: admin123)
+-- Create a default admin user (password: CloneFest2025)
 INSERT IGNORE INTO users (username, password, email, role) VALUES 
-('admin', 'admin123', 'admin@featherpress.com', 'admin'),
-('demo', 'demo123', 'demo@featherpress.com', 'user');
+('CloneFest2025', 'CloneFest2025', 'admin@chryplite.com', 'admin'),
+('demo', 'demo123', 'demo@chryplite.com', 'user');
 
 -- Insert sample quotes
 INSERT IGNORE INTO quotes (text, author, created_by) VALUES 
-('The only way to do great work is to love what you do.', 'Steve Jobs', 'admin'),
-('Innovation distinguishes between a leader and a follower.', 'Steve Jobs', 'admin');
+('The only way to do great work is to love what you do.', 'Steve Jobs', 'CloneFest2025'),
+('Innovation distinguishes between a leader and a follower.', 'Steve Jobs', 'CloneFest2025');
 
 -- Show all tables
 SHOW TABLES;

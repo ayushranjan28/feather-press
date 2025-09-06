@@ -1,61 +1,47 @@
-spec:
-  name: feather-press
-  region: blr
-  services:
-    - name: web
-      environment_slug: node-js
-      github:
-        repo: hash066/feather-press
-        branch: main
-        deploy_on_push: true
-      build_command: npm ci && npm run build
-      run_command: npm start
-      http_port: 3001
-      instance_count: 1
-      instance_size_slug: basic-xxs
-      routes:
-        - path: /
-      health_check:
-        http_path: /api/health
-      envs:
-        # Database
-        - key: MYSQL_HOST
-          scope: RUN_AND_BUILD_TIME
-          value: ""
-        - key: MYSQL_PORT
-          scope: RUN_AND_BUILD_TIME
-          value: "3306"
-        - key: MYSQL_USER
-          scope: RUN_AND_BUILD_TIME
-          value: ""
-        - key: MYSQL_PASSWORD
-          scope: RUN_AND_BUILD_TIME
-          value: ""
-        - key: MYSQL_DATABASE
-          scope: RUN_AND_BUILD_TIME
-          value: feather_press
-        # Storage provider
-        - key: STORAGE_PROVIDER
-          scope: RUN_AND_BUILD_TIME
-          value: spaces
-        - key: SPACES_ENDPOINT
-          scope: RUN_AND_BUILD_TIME
-          value: "https://nyc3.digitaloceanspaces.com"
-        - key: SPACES_REGION
-          scope: RUN_AND_BUILD_TIME
-          value: nyc3
-        - key: SPACES_BUCKET
-          scope: RUN_AND_BUILD_TIME
-          value: ""
-        - key: SPACES_KEY
-          scope: RUN_AND_BUILD_TIME
-          value: ""
-        - key: SPACES_SECRET
-          scope: RUN_AND_BUILD_TIME
-          value: ""
-        - key: PUBLIC_CDN_BASE
-          scope: RUN_AND_BUILD_TIME
-          value: ""
-        - key: NODE_ENV
-          scope: RUN_AND_BUILD_TIME
-          value: production
+name: feather-press
+services:
+- name: web
+  source_dir: /
+  github:
+    repo: ashitha1710/feather-press
+    branch: main
+  run_command: npm start
+  build_command: npm ci && npm run build
+  environment_slug: node-js
+  instance_count: 1
+  instance_size_slug: basic-xxs
+  http_port: 3001
+  health_check:
+    http_path: /api/health
+  envs:
+  - key: NODE_ENV
+    value: production
+  - key: PORT
+    value: "3001"
+  - key: MYSQL_HOST
+    value: ${MYSQL_HOST}
+  - key: MYSQL_PORT
+    value: ${MYSQL_PORT}
+  - key: MYSQL_USER
+    value: ${MYSQL_USER}
+  - key: MYSQL_PASSWORD
+    value: ${MYSQL_PASSWORD}
+    type: SECRET
+  - key: MYSQL_DATABASE
+    value: ${MYSQL_DATABASE}
+  - key: MYSQL_SSL
+    value: "true"
+  - key: STORAGE_PROVIDER
+    value: spaces
+  - key: SPACES_ENDPOINT
+    value: ${SPACES_ENDPOINT}
+  - key: SPACES_REGION
+    value: ${SPACES_REGION}
+  - key: SPACES_BUCKET
+    value: ${SPACES_BUCKET}
+  - key: SPACES_KEY
+    value: ${SPACES_KEY}
+    type: SECRET
+  - key: SPACES_SECRET
+    value: ${SPACES_SECRET}
+    type: SECRET

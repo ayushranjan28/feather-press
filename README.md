@@ -1,138 +1,176 @@
-# Welcome to your Lovable project
+# Chryp Lite
 
-## Project info
-
-**URL**: https://lovable.dev/projects/75d2384f-7d03-4e4d-9db3-52364c078158
-
-## How can I edit this code?
-
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/75d2384f-7d03-4e4d-9db3-52364c078158) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/75d2384f-7d03-4e4d-9db3-52364c078158) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+Chryp Lite is a lightweight, modern **content publishing platform** that allows you to create and manage blogs, videos, galleries, and quotes with ease.  
+It combines simplicity with powerful features like **AI-powered title generation**, responsive design, and a clean interface for both creators and readers.
 
 ---
 
-## Deploying to DigitalOcean App Platform (Full Stack)
+## What can Chryp Lite do?
 
-This repository is set up so a single Node.js service serves both the frontend (Vite build) and the backend (Express API).
+Chryp Lite makes it possible to host your own publishing platform with minimal fuss.  
+You can:
 
-### 1) Prerequisites
+* Write and publish blogs with rich content
+* Share videos, galleries, and quotes
+* Generate AI-powered titles for your posts
+* Manage your content with a friendly dashboard
+* Browse posts in an organized feed (blogs, videos, galleries, and more)
 
-- A MySQL database (DigitalOcean Managed Database, PlanetScale, or your own MySQL)
-- Optional but recommended: DigitalOcean Spaces for persistent uploads
-- GitHub repo containing this project
+Whether you want a personal blog, a multimedia hub, or a collaborative publishing platform, Chryp Lite adapts to your needs.
 
-### 2) App Platform Configuration
+---
 
-- Service Type: Node.js App
-- Source: GitHub (root of this project)
-- Build Command:
-  ```sh
-  npm ci && npm run build
-  ```
-- Run Command:
-  ```sh
-  npm start
-  ```
-- Health Check Path: `/api/health`
+## Key Features
 
-The server serves the frontend build from `dist/` and keeps APIs under `/api/*`.
+### Core
 
-### 3) Environment Variables
+* Simple login and signup system (`CloneFest2025 / CloneFest2025` as test credentials, or create your own account)
+* Fully responsive frontend built with **Vite + React + TailwindCSS**
+* Secure backend powered by **Node.js + Express**
+* MySQL database hosted on **Aiven** with SSL support
+* Clean user dashboard to manage content
+* AI Generate Mode to suggest titles from your summaries
+* Deployment-ready for **Netlify (frontend)** and **Render (backend)**
 
-Copy from `.env.example.app-platform` into App Platform → Settings → Environment Variables:
+### Content Types
 
-- Database (required)
-  - `MYSQL_HOST`
-  - `MYSQL_PORT` (e.g., 3306)
-  - `MYSQL_USER`
-  - `MYSQL_PASSWORD`
-  - `MYSQL_DATABASE` (e.g., feather_press)
+* **Blogs** – Write and publish articles
+* **Videos** – Add and view uploaded video content
+* **Gallery** – Share image collections
+* **Quotes** – Create inspirational or reference quotes
+* **Posts** – General publishing area for any content type
 
-- Storage (recommended for production uploads)
-  - `STORAGE_PROVIDER=spaces` (any non-`local` value enables object storage)
-  - `SPACES_ENDPOINT` (e.g., https://nyc3.digitaloceanspaces.com)
-  - `SPACES_REGION` (e.g., nyc3)
-  - `SPACES_BUCKET`
-  - `SPACES_KEY`
-  - `SPACES_SECRET`
-  - Optional: `PUBLIC_CDN_BASE` if you have a CDN/custom domain over your bucket
+---
 
-- App
-  - `NODE_ENV=production`
+## Requirements
 
-### 4) Auto-Deploy from GitHub
+* **Node.js 18+** and npm
+* **MySQL 5.7+ / 8.0+** (Aiven-hosted recommended)
+* SSL certificate for database connection (`aiven-ca.pem`)
+* GitHub account connected with Netlify and Render for deployment
 
-Enable "Auto-deploy on push" so each push to your chosen branch triggers a new build + deploy.
+---
 
-### 5) Optional: App Spec
+## ⚙ Installation (Local Development)
 
-This repo includes `.do/app.yaml`. You can use DigitalOcean's "Import from a spec" to create the app with pre-filled settings. You'll still need to enter secrets (DB + Spaces) in the dashboard.
+### 1. Clone Repository
 
-### 6) Notes on Uploads
+```bash
+git clone https://github.com/ashitha1710/chryp-lite.git
+cd chryp-lite
+```
 
-- Locally (dev): uploads are saved under `public/uploads/` and served at `/uploads/*`.
-- App Platform: the filesystem is ephemeral. For persistence, the server uploads files to DigitalOcean Spaces and returns public URLs. Those URLs can be stored in MySQL alongside your content.
+### 2. Install Dependencies
+
+```bash
+npm install
+```
+
+### 3. Environment Setup
+
+Copy the example environment file and configure your database:
+
+```bash
+cp env.example .env
+```
+
+Edit `.env` with your database credentials:
+
+```env
+MYSQL_HOST=your-mysql-host.aivencloud.com
+MYSQL_PORT=13605
+MYSQL_USER=avnadmin
+MYSQL_PASSWORD=your-password
+MYSQL_DATABASE=defaultdb
+MYSQL_SSL=true
+```
+
+### 4. Database Setup
+
+Run the database setup script:
+
+```bash
+npm run setup:mysql
+```
+
+### 5. Start Development Server
+
+```bash
+npm run dev:full
+```
+
+This will start both the backend server and frontend development server.
+
+---
+
+## 🚀 Deployment
+
+For detailed deployment instructions, see [DEPLOYMENT.md](./DEPLOYMENT.md).
+
+### Quick Deploy Options
+
+1. **DigitalOcean App Platform**: Use the included `.do/app.yaml` configuration
+2. **Netlify + Render**: Follow the deployment guide for separate frontend/backend hosting
+3. **Full Stack on Render**: Deploy everything as a single service
+
+---
+
+## 📁 Project Structure
+
+```
+chryp-lite/
+├── src/                    # Frontend React application
+│   ├── components/         # Reusable UI components
+│   ├── pages/             # Page components
+│   ├── lib/               # Utilities and API client
+│   └── themes/            # Theme configurations
+├── public/                # Static assets and uploads
+├── server.js              # Backend Express server
+├── setup-mysql.js         # Database setup script
+└── *.sql                  # Database schema files
+```
+
+---
+
+## 🛠️ Development
+
+### Available Scripts
+
+- `npm run dev` - Start frontend development server
+- `npm run dev:server` - Start backend server
+- `npm run dev:full` - Start both frontend and backend
+- `npm run build` - Build for production
+- `npm run setup:mysql` - Setup database tables
+- `npm start` - Start production server
+
+### Database Management
+
+- `database-setup.sql` - Initial database schema
+- `database-complete-setup.sql` - Complete setup with sample data
+- `create-missing-tables.sql` - Add missing tables if needed
+
+---
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
+
+---
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+## 🙏 Acknowledgments
+
+- Built with [Vite](https://vitejs.dev/)
+- UI components from [shadcn/ui](https://ui.shadcn.com/)
+- Styled with [Tailwind CSS](https://tailwindcss.com/)
+- Database hosted on [Aiven](https://aiven.io/)
 

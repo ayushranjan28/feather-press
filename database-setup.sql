@@ -1,9 +1,9 @@
--- MySQL Database Setup for Feather Press
+-- MySQL Database Setup for Chryp Lite
 -- Run this script to create the database and tables
 
 -- Create database (uncomment if you need to create the database)
--- CREATE DATABASE IF NOT EXISTS feather_press;
--- USE feather_press;
+-- CREATE DATABASE IF NOT EXISTS chryp_lite;
+-- USE chryp_lite;
 
 -- Create posts table
 CREATE TABLE IF NOT EXISTS posts (
@@ -19,8 +19,8 @@ CREATE TABLE IF NOT EXISTS posts (
 
 -- Insert sample data (optional)
 INSERT INTO posts (title, content) VALUES 
-('Welcome to Feather Press', 'This is your first post! You can edit or delete it from the admin panel.'),
-('Getting Started', 'Feather Press is now connected to MySQL database. You can create, read, update, and delete posts through the API.');
+('Welcome to Chryp Lite', 'This is your first post! You can edit or delete it from the admin panel.'),
+('Getting Started', 'Chryp Lite is now connected to MySQL database. You can create, read, update, and delete posts through the API.');
 
 -- Show the created table structure
 DESCRIBE posts;

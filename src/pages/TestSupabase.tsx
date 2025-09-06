@@ -68,9 +68,9 @@ const TestMySQL = () => {
           <h3 className="font-semibold text-yellow-800">Setup Instructions:</h3>
           <ol className="list-decimal list-inside mt-2 text-yellow-700 space-y-1">
             <li>Make sure MySQL is installed and running</li>
-            <li>Create a database named 'feather_press'</li>
+            <li>Create a database named 'chryp_lite'</li>
             <li>Copy env.example to .env and update with your MySQL credentials</li>
-            <li>Run the database setup: <code>mysql -u root -p feather_press &lt; database-setup.sql</code></li>
+            <li>Run the database setup: <code>mysql -u root -p chryp_lite &lt; database-setup.sql</code></li>
             <li>Start the backend server: <code>npm run dev:server</code></li>
             <li>Start the frontend: <code>npm run dev</code></li>
           </ol>

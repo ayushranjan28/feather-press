@@ -1,8 +1,17 @@
 {
-  "name": "vite_react_shadcn_ts",
+  "name": "chryp-lite",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "A lightweight, modern content publishing platform for blogs, videos, galleries, and quotes",
   "type": "module",
+  "keywords": ["blog", "cms", "content-management", "publishing", "react", "nodejs", "mysql"],
+  "author": "Chryp Lite Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ashitha1710/chryp-lite.git"
+  },
+  "homepage": "https://github.com/ashitha1710/chryp-lite#readme",
   "scripts": {
     "dev": "vite",
     "dev:server": "node server.js",

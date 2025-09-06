@@ -21,7 +21,6 @@ import {
   Sun,
   Moon,
   Monitor,
-  Upload,
   LogOut,
   Save,
   RotateCcw
@@ -45,8 +44,6 @@ export const SettingsDrawer: React.FC<SettingsDrawerProps> = ({ open, onOpenChan
   const [timezone, setTimezone] = useState(settings.timezone);
   const [dateFormat, setDateFormat] = useState(settings.dateFormat);
   const [postsPerPage, setPostsPerPage] = useState(settings.postsPerPage);
-  const [logoDataUrl, setLogoDataUrl] = useState<string | undefined>(settings.logoDataUrl);
-  const [faviconDataUrl, setFaviconDataUrl] = useState<string | undefined>(settings.faviconDataUrl);
   
   // Appearance Settings
   const [theme, setTheme] = useState(settings.theme);
@@ -87,16 +84,9 @@ export const SettingsDrawer: React.FC<SettingsDrawerProps> = ({ open, onOpenChan
       socialYouTube: youTube,
       aiTitleSuggestions: aiTitles,
       aiContentAssistance,
-      logoDataUrl,
-      faviconDataUrl,
     });
   };
 
-  const onFileToDataUrl = (file: File, cb: (url:string)=>void) => {
-    const reader = new FileReader();
-    reader.onload = () => cb(String(reader.result));
-    reader.readAsDataURL(file);
-  };
 
   const themeOptions: { value: ThemeType; label: string; icon: any; description: string }[] = [
     { value: 'system', label: 'System', icon: Monitor, description: 'Follow system preference' },
@@ -171,70 +161,6 @@ export const SettingsDrawer: React.FC<SettingsDrawerProps> = ({ open, onOpenChan
                     </CardContent>
                   </Card>
 
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="text-sm">Branding</CardTitle>
-                      <CardDescription>Upload your logo and favicon</CardDescription>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                      <div className="grid grid-cols-2 gap-4">
-                        <div>
-                          <Label className="text-sm">Site Logo</Label>
-                          <div className="mt-2">
-                            <Label htmlFor="logo-upload" className="cursor-pointer">
-                              <div className="border-2 border-dashed border-muted-foreground/25 rounded-lg p-4 hover:border-muted-foreground/50 transition-colors">
-                                {logoDataUrl ? (
-                                  <img src={logoDataUrl} alt="Logo" className="h-12 w-auto mx-auto" />
-                                ) : (
-                                  <div className="text-center">
-                                    <Upload className="w-8 h-8 mx-auto mb-2 text-muted-foreground" />
-                                    <p className="text-xs text-muted-foreground">Click to upload</p>
-                                  </div>
-                                )}
-                              </div>
-                            </Label>
-                            <input
-                              id="logo-upload"
-                              type="file"
-                              accept="image/*"
-                              className="hidden"
-                              onChange={(e) => {
-                                const f = e.target.files?.[0];
-                                if (f) onFileToDataUrl(f, setLogoDataUrl);
-                              }}
-                            />
-                          </div>
-                        </div>
-                        <div>
-                          <Label className="text-sm">Favicon</Label>
-                          <div className="mt-2">
-                            <Label htmlFor="favicon-upload" className="cursor-pointer">
-                              <div className="border-2 border-dashed border-muted-foreground/25 rounded-lg p-4 hover:border-muted-foreground/50 transition-colors">
-                                {faviconDataUrl ? (
-                                  <img src={faviconDataUrl} alt="Favicon" className="h-8 w-8 mx-auto" />
-                                ) : (
-                                  <div className="text-center">
-                                    <Upload className="w-6 h-6 mx-auto mb-1 text-muted-foreground" />
-                                    <p className="text-xs text-muted-foreground">16x16px</p>
-                                  </div>
-                                )}
-                              </div>
-                            </Label>
-                            <input
-                              id="favicon-upload"
-                              type="file"
-                              accept="image/*"
-                              className="hidden"
-                              onChange={(e) => {
-                                const f = e.target.files?.[0];
-                                if (f) onFileToDataUrl(f, setFaviconDataUrl);
-                              }}
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
 
                   <Card>
                     <CardHeader>
