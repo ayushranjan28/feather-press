@@ -1,0 +1,35 @@
+{
+  "deployment": {
+    "id": "694c5103-06c0-4afb-8def-9cbcf6e97061",
+    "name": "Chryp Lite",
+    "description": "A lightweight, modern content publishing platform for blogs, videos, galleries, and quotes",
+    "url": "https://694c5103-06c0-4afb-8def-9cbcf6e97061.netlify.app",
+    "environment": "production",
+    "build": {
+      "command": "npm run build:prod",
+      "publish": "dist",
+      "environment": {
+        "NODE_ENV": "production",
+        "VITE_API_BASE_URL": "https://chryp-lite-backend.onrender.com/api"
+      }
+    },
+    "database": {
+      "type": "mysql",
+      "host": "mysql-2cb8c4fc-patilashitha-516c.d.aivencloud.com",
+      "port": 13605,
+      "database": "defaultdb",
+      "ssl": true
+    },
+    "features": {
+      "cms": true,
+      "blog": true,
+      "gallery": true,
+      "videos": true,
+      "quotes": true,
+      "authentication": true,
+      "file_upload": true
+    },
+    "created": "2025-01-27",
+    "version": "1.0.0"
+  }
+}
